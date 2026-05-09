@@ -15,16 +15,16 @@ def split_nodes_delimiter(old_nodes, delimiter, text_type):
             if len(node_text_list) % 2 == 0:
                 raise Exception(f"invalid .MD syntax, no closing {d} found")
             else:
-                format_text = False
+                do_format_text = False
                 for node_text in node_text_list:
                     if not node_text:
-                        format_text = not format_text
-                    elif not format_text:
+                        do_format_text = not do_format_text
+                    elif not do_format_text:
                         new_nodes.append(TextNode(node_text, TextType.TEXT))
-                        format_text = not format_text
+                        do_format_text = not do_format_text
                     else:
                         new_nodes.append(TextNode(node_text, text_type))
-                        format_text = not format_text
+                        do_format_text = not do_format_text
     return new_nodes
 
 
@@ -113,3 +113,20 @@ def split_nodes_link(old_nodes):
                     if text_to_split:
                         new_nodes.append(TextNode(text_to_split, TextType.TEXT))
     return new_nodes
+
+
+def text_to_textnodes(text):
+    """
+    Example input:
+        This is **text** with an _italic_ word and a `code block` and an ![obi wan image](https://i.imgur.com/fJRm4Vk.jpeg) and a [link](https://boot.dev)
+    """
+
+    text_node = TextNode(text, TextType.TEXT)
+    bold1 = split_nodes_delimiter([text_node], "**", TextType.BOLD)
+    bold2 = split_nodes_delimiter(bold1, "__", TextType.BOLD)
+    italic1 = split_nodes_delimiter(bold2, "*", TextType.ITALIC)
+    italic2 = split_nodes_delimiter(italic1, "_", TextType.ITALIC)
+    code = split_nodes_delimiter(italic2, "`", TextType.CODE)
+    image = split_nodes_image(code)
+    final_text_node = split_nodes_link(image)
+    return final_text_node
