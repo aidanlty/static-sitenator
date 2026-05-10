@@ -1,7 +1,6 @@
-from tkinter.tix import TEXT
 import unittest
 from src.textnode import TextType, TextNode
-from src.helper.inline_formatter import *
+from src.formatter.inline_formatter import *
 
 
 class TestInlineFormatter(unittest.TestCase):
