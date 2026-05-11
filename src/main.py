@@ -6,13 +6,13 @@ from src.copydir import copy_dir_contents
 
 
 def main():
-    basepath = '/'
+    basepath = "/"
     if len(sys.argv) >= 2:
-        basepath = sys.argv[1] or '/'  # basepath : static-sitenator
-    print(basepath)
+        basepath = sys.argv[1] or "/"  # basepath : static-sitenator
+    print(f"Basepath: `{basepath}`")
 
     copy_dir_contents("static", "docs")
-    generate_pages_recursive('content', 'template.html', 'docs', basepath)
+    generate_pages_recursive("content", "template.html", "docs", basepath)
 
 
 main()
