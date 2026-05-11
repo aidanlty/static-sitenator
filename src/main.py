@@ -11,7 +11,7 @@ def main():
         basepath = sys.argv[1] or '/'  # basepath : static-sitenator
     print(basepath)
 
-    copy_dir_contents("./static", "./docs")
+    copy_dir_contents("static", "docs")
     generate_pages_recursive('content', 'template.html', 'docs', basepath)
 
 

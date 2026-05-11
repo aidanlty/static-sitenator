@@ -33,7 +33,7 @@ def generate_page(from_path, template_path, dest_path, basepath):
         os.makedirs(os.path.dirname(dest_path), exist_ok=True)
     with open(dest_path, "w") as f:
         f.write(tp)
-    print(f'Generated    : ./{dest_path}')
+    print(f'Generated    : {dest_path}')
 
 def generate_pages_recursive(dir_path_content, template_path, dest_dir_path, basepath):
     nested_items = os.listdir(dir_path_content)
