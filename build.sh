@@ -1,1 +1,1 @@
-python3.12 -m src.main "static-sitenator"
+python3.12 -m src.main "/static-sitenator/"

@@ -6,7 +6,9 @@ from src.copydir import copy_dir_contents
 
 
 def main():
-    basepath = sys.argv[0] or '/'
+    basepath = '/'
+    if len(sys.argv) >= 2:
+        basepath = sys.argv[1] or '/'  # basepath : static-sitenator
     print(basepath)
 
     copy_dir_contents("./static", "./docs")
