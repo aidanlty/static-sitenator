@@ -36,5 +36,4 @@ class HTMLNode:
         if self.props != None:
             for k, v in self.props.items():
                 res += f' {k}="{v}"'
-            res = res[:-1]
         return res

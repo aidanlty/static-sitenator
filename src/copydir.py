@@ -13,11 +13,15 @@ def copy_dir_contents(src, dst, first_run=True):
             os.makedirs(dst)
             print(f"Files in {dst} removed\n")
         else:
-            print(f"Path {dst} does not exist. Continuing to create {dst} and copy items...")
+            print(
+                f"Path {dst} does not exist. Continuing to create {dst} and copy items..."
+            )
             os.makedirs(dst)
 
     nested_items = os.listdir(src)
     for item in nested_items:
+        if item == ".DS_Store":
+            continue
         item_src = os.path.join(src, item)
         if os.path.isfile(item_src):
             shutil.copy(item_src, dst)
@@ -30,5 +34,3 @@ def copy_dir_contents(src, dst, first_run=True):
             copy_dir_contents(item_src, new_dst, False)
         else:
             raise Exception(f"Error: {item_src} is of unknown file type")
-
-    return
